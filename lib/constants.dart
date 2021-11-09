@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
 
 const EdgeInsets padding10 = EdgeInsets.all(10);
@@ -25,7 +26,8 @@ const SizedBox box20 = SizedBox(
 const SizedBox box30 = SizedBox(
   height: 30,
 );
-Color primaryColor = Color(0xFF00a9b6);
+Color primaryColor = Colors.blue;
+//const Color(0xFF00a9b6);
 
 const Color secondaryColor = Color(0xFFf9a825);
 
