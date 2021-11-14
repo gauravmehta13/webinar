@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "14817929979",
+    "project_id": "webinar-d2e17",
+    "storage_bucket": "webinar-d2e17.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:14817929979:android:b22a204bb7ad418f401e5e",
+        "android_client_info": {
+          "package_name": "com.webinar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "14817929979-pff9n3kedtkopsf39pr9i2sh237e1hcc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkNp9HDpSSaf5aKJiZFrOhI8cu71OQNf8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "14817929979-pff9n3kedtkopsf39pr9i2sh237e1hcc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

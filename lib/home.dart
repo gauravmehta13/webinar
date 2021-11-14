@@ -1,5 +1,11 @@
+import 'dart:convert';
+import 'dart:developer';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webinar/Constants.dart';
 
@@ -89,6 +95,39 @@ class _HomePageState extends State<HomePage> {
           "I have got fair understanding of the role of LSA and its a good start for me to complete LSA certification"
     },
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    getIpDetails();
+  }
+
+  String? uid;
+  Map<String, dynamic>? data;
+
+  getIpDetails() async {
+    var url = Uri.parse('http://ip-api.com/json');
+    var response = await http.get(url);
+    log('Response status: ${response.statusCode}');
+    log('Response body: ${response.body}');
+    setState(() {
+      data = json.decode(response.body);
+    });
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getString("uid") == null) {
+      var user = FirebaseFirestore.instance.collection("users").doc();
+      uid = user.id;
+      prefs.setString('uid', user.id);
+    } else {
+      uid = prefs.getString("uid");
+    }
+  }
+
+  saveDetails() async {
+    if (uid != null && data != null) {
+      await FirebaseFirestore.instance.collection("users").doc(uid).set(data!);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -498,6 +537,8 @@ class _HomePageState extends State<HomePage> {
   Widget loginButton() {
     return InkWell(
       onTap: () {
+        saveDetails();
+
         try {
           launch(
               "https://www.google.com/search?q=coming+soon&rlz=1C1GTPM_enIN970IN970&oq=coming+soon&aqs=chrome.0.0i271j46i433i512j35i39i362l3j0i512l2j0i433i512l3...3.1613j0j15&sourceid=chrome&ie=UTF-8&shem=ssmd");
